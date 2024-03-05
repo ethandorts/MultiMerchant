@@ -5,6 +5,7 @@ import '../Components/css/LoginForm.css';
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [ErrorMessage, setErrorMessage] = useState('');
 
     const EmailChangeHandler = (e) => {
         setEmail(e.target.value);
