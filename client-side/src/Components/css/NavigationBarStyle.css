@@ -1,5 +1,9 @@
 nav {
-    background-color: #339EFF;
+    background-color: #000;
+}
+
+body {
+    color: #fff;
 }
 
 .navbar-logo {

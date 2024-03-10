@@ -1,0 +1,9 @@
+.user-page-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-container {
+    margin-bottom: 50px;; 
+  }
+  

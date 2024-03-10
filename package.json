@@ -47,6 +47,7 @@
     "mime": "^1.6.0",
     "mime-db": "^1.52.0",
     "mime-types": "^2.1.35",
+    "mongodb": "^6.4.0",
     "mongoose": "^8.2.1",
     "ms": "^2.0.0",
     "negotiator": "^0.6.3",
@@ -77,7 +78,8 @@
     "start": "node server-side/server.js",
     "server": "nodemon server-side/server.js",
     "client": "npm start --prefix client-side",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "seed": "node server-side/Seeders/seed.js"
   },
   "author": "Ethan Doherty",
   "license": "MIT",

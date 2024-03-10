@@ -22,12 +22,12 @@ const NavigationBar = () => {
           <LinkContainer to="/account">
             <Nav.Link className='mr-2'>
               Login
-              <RiAccountCircleLine className='icon' style={{ fontSize: '32px', marginLeft: '5px' }}  />
+              <RiAccountCircleLine className='icon' style={{ fontSize: '32px', marginLeft: '5px', color: 'white'}}  />
             </Nav.Link>
           </LinkContainer>
           <LinkContainer to="/basket">
             <Nav.Link>
-            <FaShoppingBasket className='icon' style={{ fontSize: '32px' }} /> 
+            <FaShoppingBasket className='icon' style={{ fontSize: '32px', color: 'white' }} /> 
             </Nav.Link>
           </LinkContainer>
         </Nav>

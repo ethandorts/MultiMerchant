@@ -10,7 +10,7 @@ function App() {
   return (
     <>
    <NavigationBar />
-   <main>
+   <main style ={{marginTop: '2%'}}>
   <Container fluid style={{padding:0}}>
     <Outlet />
   </Container>
