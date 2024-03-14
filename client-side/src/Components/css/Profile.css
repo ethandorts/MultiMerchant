@@ -44,6 +44,7 @@ body {
     align-items: center; 
     margin-top: -4%;
     margin-left: 11%;
+    margin-bottom: 0.25%;
 }
 
 
@@ -60,6 +61,13 @@ body {
 
   .stat {
     margin-top: 5px;
+  }
+
+  .bio {
+    text-align: center;
+    display: flex;
+    margin-left: 44%;
+    width: 30%;
   }
 
 

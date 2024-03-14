@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../assets/StripWeathersCars.png';
 import '../Components/css/Profile.css';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
+import { Form } from 'react-bootstrap';
 
 const Profile = () => {
     const profile = {
@@ -9,11 +10,13 @@ const Profile = () => {
         image: '',
         itemsForSale: 32,
         followers: 78,
-        reviews: 6
+        reviews: 6,
+        biography: 'Hello you see there'
     };
 
     return (
         <>
+        <div>
             <div className='user-profile'>
                 <div className='container-logo'>
                     <img className='logo' src={Logo} alt="Logo" />
@@ -33,6 +36,10 @@ const Profile = () => {
                     Reviews: <b>{profile.reviews}</b>
                     &nbsp;&nbsp; 
                 </div>
+            </div>
+            <div className='bio'>
+            Everybody loves clothes. Do you wanto buy mine?
+            </div>
             </div>
         </>
     );

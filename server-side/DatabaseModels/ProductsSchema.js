@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import User from '../DatabaseModels/UserSchema.js';
+import Users from '../DatabaseModels/UsersSchema.js';
 
 const RatingsSchema = new mongoose.Schema({
     ProductStarRating: {
@@ -12,12 +12,12 @@ const RatingsSchema = new mongoose.Schema({
     },
     Buyer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: User,
+        ref: Users,
         required: true
     }
 })
 
-const ProductSchema = new mongoose.Schema ({
+const ProductsSchema = new mongoose.Schema ({
     ProductName : {
         type: String,
         required: true,
@@ -61,12 +61,12 @@ const ProductSchema = new mongoose.Schema ({
     },
     Seller: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Users',
         required: true
     }
 })
 
-const Product = mongoose.model('Product', ProductSchema);
+const Products = mongoose.model('Products', ProductsSchema);
 
-export default Product;
+export default Products;
 

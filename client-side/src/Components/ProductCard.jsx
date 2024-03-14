@@ -1,42 +1,35 @@
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Card, Button, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import '../Components/css/ProductCard.css';
+import Image from '../assets/santa.png';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-}));
-
-const ProductCard = ({ title, description, imageUrl, price }) => {
-  const classes = useStyles();
-
+const ProductCard = () => {
   return (
-    <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={imageUrl}
-        title={title}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-          {title}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {description}
-        </Typography>
-        <Typography variant="h6" component="p">
-          Price: ${price}
-        </Typography>
-        <Button variant="contained" color="primary">
-          Add to Cart
-        </Button>
-      </CardContent>
+    <Card>
+      <Link to={'/product'}>
+      <img
+          src={Image}
+          className='card-img-top'  
+        />
+      </Link>
+      <Card.Body>
+        <Row>
+          <Col>
+        <Link to={'/product'}>
+          <Card.Title> Black Jacket </Card.Title>
+        </Link>
+        <Card.Text>
+          £25.00
+        </Card.Text>
+        </Col>
+        <Col className='d-flex justify-content-end'>
+        <Button variant='primary'>Add To Basket</Button>
+        </Col>
+        </Row>
+      </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

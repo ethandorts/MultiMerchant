@@ -7,7 +7,7 @@ const addressSchema = new mongoose.Schema({
     Country: { type: String, required: true}
 })
 
-const UserSchema = new mongoose.Schema({
+const UsersSchema = new mongoose.Schema({
     FirstName: {
         type: String,
         required: true,
@@ -50,6 +50,7 @@ const UserSchema = new mongoose.Schema({
     }
 })
 
-const User = mongoose.model('User', UserSchema);
+const Users = mongoose.model('Users', UsersSchema);
 
-export default User;
+export default Users;
+

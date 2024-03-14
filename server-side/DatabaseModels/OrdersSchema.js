@@ -1,6 +1,6 @@
 import mongoose, { Mongoose, Schema } from 'mongoose';
-import User from '../DatabaseModels/UserSchema.js';
-import Product from '../DatabaseModels/ProductSchema.js';
+import Users from '../DatabaseModels/UsersSchema.js';
+import Product from './ProductsSchema.js';
 
 const addressSchema = new mongoose.Schema({
     StreetAddress: {type: String, required: true, minlength:5, maxlength: 150},
@@ -13,12 +13,12 @@ const OrderItemsSchema = new mongoose.Schema({
     Product: {
         type: mongoose.Schema.Types.ObjectId,
         required: true, 
-        ref: 'Product'
+        ref: 'Products'
     },
     Seller: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User'
+        ref: 'Users'
     },
     Quantity: {
         type: Number, 
@@ -33,7 +33,7 @@ const OrderItemsSchema = new mongoose.Schema({
 const OrdersSchema = new mongoose.Schema({
     Buyer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Users',
         required: true
     },
     OrderItemsInfo: [OrderItemsSchema],
