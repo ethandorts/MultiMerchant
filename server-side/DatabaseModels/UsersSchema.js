@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const addressSchema = new mongoose.Schema({
     StreetAddress: {type: String, required: true, minlength:5, maxlength: 150},
@@ -47,8 +48,30 @@ const UsersSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 7
+    },
+    ApplicationAdmin:{
+        type: Boolean,
+        required: true,
+        default: false
     }
-})
+});
+
+UsersSchema.pre('save', async function(next) {
+    try {
+        if(!this.isModified('Password')) {
+            return next();
+        }
+        const SaltPassword = await bcrypt.genSalt(10);
+        this.Password = await bcrypt.hash(this.Password, SaltPassword);
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
+
+UsersSchema.methods.PasswordIsCorrect = async function (SubmittedPassword) {
+    return await bcrypt.compare(SubmittedPassword, this.Password);
+}
 
 const Users = mongoose.model('Users', UsersSchema);
 

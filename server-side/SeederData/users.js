@@ -12,7 +12,8 @@ const UserData = [
       "DOB": "1990-01-15",
       "Email": "johndoe@example.com",
       "Username": "johndoe",
-      "Password": "password123"
+      "Password": "password123",
+      "ApplicationAdmin": "false"
     },
     {
       "FirstName": "Jane",
@@ -26,7 +27,8 @@ const UserData = [
       "DOB": "1995-05-20",
       "Email": "janesmith@example.com",
       "Username": "janesmith",
-      "Password": "pass123"
+      "Password": "pass123",
+      "ApplicationAdmin": "false"
     },
     {
       "FirstName": "Michael",
@@ -40,7 +42,8 @@ const UserData = [
       "DOB": "1980-11-10",
       "Email": "michaeljohnson@example.com",
       "Username": "michaeljohnson",
-      "Password": "securepass"
+      "Password": "securepass",
+      "ApplicationAdmin": "false"
     }
   ]
   

@@ -64,7 +64,7 @@ const OrdersSchema = new mongoose.Schema({
 
 OrdersSchema.pre('save', async function(next) {
     try {
-        const buyer = await User.findById(this.Buyer);
+        const buyer = await Users.findById(this.Buyer);
         if(!buyer) {
             throw new Error('Buyer was not found in the User collection');
         }
@@ -83,6 +83,6 @@ OrdersSchema.pre('save', async function(next) {
         next(err);
     }});
 
-const Order = mongoose.model('Order', OrdersSchema);
+const Orders = mongoose.model('Orders', OrdersSchema);
 
-export default Order;
+export default Orders;
