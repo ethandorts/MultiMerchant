@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap'; 
 import DropDownMenu from './DropDownMenu';
 
-
-
 const NavigationBar = () => {
   return (
     <header>
@@ -20,7 +18,7 @@ const NavigationBar = () => {
         <DropDownMenu />
         <Nav className="ms-auto d-flex flex-row align-items-center custom-nav"> 
           <LinkContainer to="/account">
-            <Nav.Link className='mr-2'>
+            <Nav.Link className='mr-2 text-white'>
               Login
               <RiAccountCircleLine className='icon' style={{ fontSize: '32px', marginLeft: '5px', color: 'white'}}  />
             </Nav.Link>
