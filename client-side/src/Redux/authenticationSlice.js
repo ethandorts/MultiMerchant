@@ -27,6 +27,19 @@ export const LoginUser = createAsyncThunk(
     }
 )
 
+export const LogoutUser = createAsyncThunk(
+    'LogoutUser',
+    async ( {rejectWithValue }) => {
+        try {
+            const response = await axios.post('http://localhost:5000/api/users/login');
+            console.log('User successfuly logged out');
+            return response.data;
+        } catch (err) {
+            return rejectWithValue(err.response.data);
+        }
+    }
+)
+
 const authenticationSlice = createSlice({
     name: 'authentication',
     initialState: {
