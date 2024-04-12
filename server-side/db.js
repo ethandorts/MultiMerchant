@@ -1,18 +1,19 @@
-import mongoose from 'mongoose';
-import express from 'express';
+import mysql from 'mysql';
 
-const app = express();
+const DatabaseConnection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'multivendor',
+    port: '',
+})
 
-// Function to establish database connection
-const DatabaseConnection = async () => {;
-    try {
-        await mongoose.connect('mongodb+srv://ethandorts2002:Liverpool1@cluster0.8x8z89b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log(`Database Successfully Connected`);
-    } catch (err) {
-        console.error(`Failed to connect to Database`, err);
+DatabaseConnection.connect((err) => {
+    if (err) {
+      console.error('Error connecting to MySQL database: ' + err.stack);
+      return;
     }
-};
+    console.log('Connected to MySQL database as id ');
+  });
+
 export default DatabaseConnection;

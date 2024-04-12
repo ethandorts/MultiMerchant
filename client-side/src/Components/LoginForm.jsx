@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import {useSelector , useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux'; 
 import { Form, Button } from 'react-bootstrap';
 import '../Components/css/LoginForm.css';
-import { LoginUser } from '../Redux/authenticationSlice.js';
+import { DisplayUserDetails, Logout } from '../Redux/authenticationSlice.js'; 
+import { useUserLoginMutation, useUserLogoutMutation } from '../Redux/UsersSlice.js';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.authentication.user);
-    const isLoading = useSelector(state => state.authentication.isLoading);
-    const error = useSelector(state => state.authentication.error);
-
+    const [UserLogin] = useUserLoginMutation();
+    const [UserLogout] = useUserLogoutMutation();
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
     const [ErrorMessage, setErrorMessage] = useState('');
@@ -22,26 +21,22 @@ const LoginForm = () => {
         setPassword(e.target.value);
     }
 
-    const FormSubmitHandler = (e) => {
+    const FormSubmitHandler = async (e) => {
         e.preventDefault();
 
-        if(!Email) {
-            setErrorMessage('Fill in email field');
+        if (!Email || !Password) {
+            setErrorMessage('Fill in email and password fields');
             return;
         }
 
-        if(!Password) {
-            setErrorMessage('Fill in password field');
-            return;
+        try {
+            const res = await UserLogin({ Email, Password }).unwrap();
+            dispatch(DisplayUserDetails({ ...res }));
+            document.cookie = `auth_token=${res.token}; expires=Thu, 01 Jan 2025 00:00:00 UTC; path=/;`;
+        } catch (error) {
+            console.error(error);
+            setErrorMessage('Invalid email or password');
         }
-
-        const UserToLogin = {
-            Email,
-            Password
-        }
-
-        dispatch(LoginUser(UserToLogin));
-
     }
 
     return (
@@ -56,10 +51,11 @@ const LoginForm = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type='password' id='password' value={Password} onChange={PasswordChangeHandler} className="mt-2" />
                 </Form.Group>
-                <div className="d-flex justify-content-center">
+                {ErrorMessage && <p className="text-danger">{ErrorMessage}</p>}
+                <div className="d-flex justify-content-between">
                     <Button variant="primary" type="submit" className="px-4 my-2">Login</Button>
                 </div>
-                <p className="mt-3 text-center">Don't have an account? <a href="/signup">Sign up here</a></p>
+                <p className="mt-3 text-center">Don't have an account? <a href="/register">Sign up here</a></p>
             </Form>
         </div>
     );

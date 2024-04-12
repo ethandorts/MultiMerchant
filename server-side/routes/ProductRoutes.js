@@ -1,9 +1,9 @@
 import express from 'express';
-import { getAllProducts } from '../controllers/ProductsController.js';
+import { GetAllProducts, GetProductsByUserID } from '../controllers/ProductsController.js';
 
 const ProductsRoutes = express.Router();
 
-ProductsRoutes.get('/products/getAllProducts', getAllProducts);
-
+ProductsRoutes.get('/api/products/getAllProducts', GetAllProducts);
+ProductsRoutes.get('/api/products/getProductsByUserID/:id', GetProductsByUserID);
 
 export default ProductsRoutes;

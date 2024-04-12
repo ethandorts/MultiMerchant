@@ -1,14 +1,13 @@
 import jwt from 'jsonwebtoken';
 
-const GenerateToken = (res, UserID ) => {
-    const token = jwt.sign({ UserID }, 'ABCDEF', {expiresIn: '14d'});
+const TokenGenerator = (res, UserId) => {
+    const auth_token = jwt.sign({ UserId }, 'ABC123', { expiresIn: '30d'});
 
-    res.cookie('auth_token', token, {
-        httpOnly: true,
+    res.cookie('jwt', auth_token, {
+        httpOnly: true, 
         sameSite: 'strict',
-        maxAge: 25940000
+        maxAge: 259200000,
     });
-    
 }
 
-export default GenerateToken;
+export default TokenGenerator;
