@@ -14,8 +14,8 @@ const GetAllUsers = (req, res) => {
 
 
 const GetUserById = (req, res) => {
-    const userId = req.params.id; 
-    DatabaseConnection.query('SELECT * FROM Users WHERE id = ?', userId, (error, results) => {
+    const UserId = req.params.id; 
+    DatabaseConnection.query('SELECT * FROM Users WHERE UserID = ?', UserId, (error, results) => {
         if (error) {
             console.error(error);
             return res.status(500).json({ message: 'User could not be found' });

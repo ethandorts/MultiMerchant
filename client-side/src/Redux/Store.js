@@ -6,16 +6,18 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authenticationReducer from './authenticationSlice';
 import { BaseSlice } from './BaseSlice';
+import { ProductsSlice } from './ProductsSlice';
 
 const rootReducer = combineReducers({
     authentication: authenticationReducer,
     [BaseSlice.reducerPath]: BaseSlice.reducer,
+    [ProductsSlice.reducerPath]: ProductsSlice.reducer,
 });
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['authentication'], // Specify which slices to persist
+    whitelist: ['authentication'], 
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

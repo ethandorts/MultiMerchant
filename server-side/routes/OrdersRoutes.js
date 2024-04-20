@@ -1,9 +1,9 @@
 import express from 'express';
-import { getAllOrders } from '../controllers/OrdersController.js';
+import { GetAllOrders, GetOrderByID } from '../controllers/OrdersController.js';
 
 const OrdersRoutes = express.Router();
 
-OrdersRoutes.get('/orders/getAllOrders', getAllOrders);
-
+OrdersRoutes.get('/api/orders/getAllOrders', GetAllOrders);
+OrdersRoutes.get('/api/orders/getOrderByID/:id', GetOrderByID);
 
 export default OrdersRoutes;

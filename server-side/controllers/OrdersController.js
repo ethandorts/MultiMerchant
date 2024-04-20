@@ -1,13 +1,28 @@
-import mongoose from 'mongoose';
-import Orders from '../DatabaseModels/OrdersSchema.js';
+import express from 'express';
+import DatabaseConnection from '../db.js';
 
-const getAllOrders = async (req , res) => {
-    try {
-    const Orders = Orders.find();
-    res.json(Orders);
-    } catch (err) {
-        res.status(500).json({message: "Couldn't find all the orders"});
-    }
-}
+const GetAllOrders = (req, res) => {
+    DatabaseConnection.query('SELECT * FROM orders', (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Could not retrieve all orders' });
+        }
+        res.json(results);
+    });
+};
 
-export { getAllOrders };
+const GetOrderByID = (req, res) => {
+    const OrderID = req.params.id; 
+    DatabaseConnection.query('SELECT * FROM orders WHERE OrderID = ?', [OrderID], (error, results) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Order could not be found' });
+        }
+        if (!results.length) {
+            return res.status(404).json({ message: 'Order was not found' });
+        }
+        res.json(results[0]);
+    });
+};
+
+export { GetAllOrders, GetOrderByID };

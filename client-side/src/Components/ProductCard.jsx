@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../Components/css/ProductCard.css';
 import Image from '../assets/santa.png';
 
-const ProductCard = () => {
+const ProductCard = ({product}) => {
   return (
     <Card>
       <Link to={'/product'}>
@@ -17,10 +17,10 @@ const ProductCard = () => {
         <Row>
           <Col>
         <Link to={'/product'}>
-          <Card.Title> Black Jacket </Card.Title>
+          <Card.Title> {product.ProductName} </Card.Title>
         </Link>
         <Card.Text>
-          £25.00
+          £{product.ProductPrice}
         </Card.Text>
         </Col>
         <Col className='d-flex justify-content-end'>

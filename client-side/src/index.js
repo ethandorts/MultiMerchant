@@ -3,21 +3,26 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import Routes
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
 import reportWebVitals from './reportWebVitals';
 import LandingPage from './Pages/LandingPage';
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import UserPage from './Pages/UserPage';
+import { useParams } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { persistStore } from 'redux-persist'; // Import persistStore
-import { PersistGate } from 'redux-persist/integration/react'; // Import PersistGate
-import store from './Redux/Store'; // Import your Redux store
+import { persistStore } from 'redux-persist'; 
+import { PersistGate } from 'redux-persist/integration/react'; 
+import store from './Redux/Store'; 
 
-// Use ReactDOM.createRoot if you're using React 18
+const UserPageWrapper = () => {
+  const { userId } = useParams(); 
+  return <UserPage userId={userId} />; 
+};
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// Initialize persistor
 const persistor = persistStore(store);
 
 // Render your application with Redux persistence
@@ -31,7 +36,7 @@ root.render(
               <Route index element={<LandingPage />} /> {/* Use element prop */}
               <Route path="login" element={<LoginPage />} /> {/* Use element prop */}
               <Route path="register" element={<RegisterPage />} /> {/* Use element prop */}
-              <Route path="user" element={<UserPage />} /> {/* Use element prop */}
+              <Route path="user/:userId" element={<UserPageWrapper />} /> {/* Use element prop */}
             </Route>
           </Routes>
         </Router>

@@ -4,6 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 import '../Components/css/LoginForm.css';
 import { DisplayUserDetails, Logout } from '../Redux/authenticationSlice.js'; 
 import { useUserLoginMutation, useUserLogoutMutation } from '../Redux/UsersSlice.js';
+import FacebookLogin from 'react-facebook-login';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -39,6 +40,18 @@ const LoginForm = () => {
         }
     }
 
+    const FacebookLoginHandler = async  (response) => {
+    try {
+        const res = await UserLogin({ facebookToken: response.accessToken }).unwrap();
+        dispatch(DisplayUserDetails({ ...res }));
+            document.cookie = `auth_token=${res.token}; expires=Thu, 01 Jan 2025 00:00:00 UTC; path=/;`;
+        } catch (error) {
+            console.error(error);
+            setErrorMessage('Facebook Login Failed');
+        }
+
+    }
+
     return (
         <div className="container d-flex justify-content-center mt-5">
             <Form onSubmit={FormSubmitHandler} className="rounded-lg border p-4" style={{ maxWidth: '55%', width: '100%', maxHeight: '50%' }}>
@@ -56,6 +69,17 @@ const LoginForm = () => {
                     <Button variant="primary" type="submit" className="px-4 my-2">Login</Button>
                 </div>
                 <p className="mt-3 text-center">Don't have an account? <a href="/register">Sign up here</a></p>
+                <div className="mt-3 text-center">
+                    <FacebookLogin
+                        appId="1432454087633396"
+                        autoLoad={false}
+                        fields="name,email,picture"
+                        callback={FacebookLoginHandler}
+                        cssClass="btn btn-primary"
+                        icon="fa-facebook"
+                        textButton=" Login with Facebook "
+                    />
+                </div>
             </Form>
         </div>
     );

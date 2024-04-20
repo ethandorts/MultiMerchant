@@ -13,7 +13,7 @@ const GetAllProducts = (req, res) => {
  };
 
  const GetProductsByUserID = (req, res) => {
-    const SellerID = req.params.id;
+    const SellerID = req.params.userId;
     DatabaseConnection.query('SELECT * FROM products WHERE SellerID = ?', [SellerID], (error, results) => {
         if (error) {
             console.error(error);
